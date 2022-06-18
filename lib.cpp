@@ -76,3 +76,6 @@ void al_rest(double time)
 ## display gif
     //TBA
 
+int jump_speed,jump_time,init_y;
+chara.jump_speed=20;
+chara.jump_time = 0;
