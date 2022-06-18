@@ -50,7 +50,7 @@ void game_init() {
     al_register_event_source(event_queue, al_get_display_event_source( display ));
     al_register_event_source(event_queue, al_get_keyboard_event_source());
     al_register_event_source(event_queue, al_get_mouse_event_source());
-    fps  = al_create_timer( 1.0 / FPS );
+    fps=al_create_timer( 1.0 / FPS );
     al_register_event_source(event_queue, al_get_timer_event_source( fps )) ;
     // initialize the icon on the display
     ALLEGRO_BITMAP *icon = al_load_bitmap("./image/icon.jpg");

@@ -1,13 +1,15 @@
 #include "charater.h"
 
 // the state of character
-enum {STOP = 0, MOVE, ATK};
+int cnt=0,tmp;
+enum {STOP = 0, MOVE, JUMP};
 typedef struct character
 {
     int x, y; // the position of image
     int width, height; // the width and height of image
     bool dir; // left: false, right: true
     int state; // the state of character
+    int jump_speed,jump_time,init_y;
     ALLEGRO_BITMAP *img_move[2];
     ALLEGRO_BITMAP *img_atk[2];
     ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
@@ -33,19 +35,19 @@ void character_init(){
     chara.atk_Sound  = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(chara.atk_Sound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(chara.atk_Sound, al_get_default_mixer());
-
     // initial the geometric information of character
     chara.width = al_get_bitmap_width(chara.img_move[0]);
     chara.height = al_get_bitmap_height(chara.img_move[0]);
     chara.x = WIDTH/2;
     chara.y = HEIGHT/2;
     chara.dir = false;
+    chara.jump_speed=30;
 
     // initial the animation component
     chara.state = STOP;
     chara.anime = 0;
     chara.anime_time = 30;
-
+    chara.jump_time = 0;
 }
 void charater_process(ALLEGRO_EVENT event){
     // process the animation
@@ -54,32 +56,105 @@ void charater_process(ALLEGRO_EVENT event){
             chara.anime++;
             chara.anime %= chara.anime_time;
         }
+        if(event.timer.source==fps&&chara.state==JUMP){
+            cnt++;
+        }
     // process the keyboard event
     }else if( event.type == ALLEGRO_EVENT_KEY_DOWN ){
         key_state[event.keyboard.keycode] = true;
-        chara.anime = 0;
+        chara.anime=0;
     }else if( event.type == ALLEGRO_EVENT_KEY_UP ){
-        key_state[event.keyboard.keycode] = false;
+        key_state[event.keyboard.keycode]=false;
     }
+}
+bool in_range(int x,int y){
+    if(x>=BOUND&&x<=BOUND+100&&y>=BOUND&&y<=BOUND+100)
+        return true;
+    else
+        return false;
+}
+int check_collision(Character* ch){
+    int dx=ch->width/2,dy=ch->height/2;
+    for(int i=0;i<3;++i){
+        for(int j=0;j<3;++j){
+            if(in_range(ch->x+dx*j,ch->y+dy*i)){
+                return i*3+j+1;
+            }
+        }
+    }
+    return 0;
+}
+int jump(int jump_speed,int jump_time){
+    int res=jump_speed-jump_time;
+    return res;
 }
 void charater_update(){
     // use the idea of finite state machine to deal with different state
-    if( key_state[ALLEGRO_KEY_W] ){
-        chara.y -= 5;
-        chara.state = MOVE;
-    }else if( key_state[ALLEGRO_KEY_A] ){
+    if(chara.state==JUMP){
+        if(cnt==2){
+            int dx,dy;
+            cnt=0;
+            chara.jump_time++;
+            dy=jump(chara.jump_speed,chara.jump_time);
+            chara.y-=dy;
+            tmp=check_collision(&chara);
+            printf("%d %d\n",chara.x,chara.y);
+            printf("%d ",tmp);
+            if(chara.y>chara.init_y){
+                chara.y=chara.init_y;
+                chara.state=STOP;
+                chara.jump_time=0;
+            }
+            else if(tmp!=0&&tmp<=3){
+                chara.y+=dy;
+            }
+            else if(tmp<=9&&tmp>=7){
+                chara.y+=dy;
+                chara.state=STOP;
+                chara.jump_time=0;
+            }
+            dx=(chara.dir?1:-1);
+            chara.x+=dx;
+            tmp=check_collision(&chara);
+            printf("%d\n",tmp);
+            if(tmp%3==1){
+                chara.x-=dx;
+            }
+            else if(tmp!=0&&tmp%3==0){
+                chara.x-=dx;
+            }
+        }
+    }
+    else if( key_state[ALLEGRO_KEY_A] ){
         chara.dir = false;
         chara.x -= 5;
         chara.state = MOVE;
-    }else if( key_state[ALLEGRO_KEY_S] ){
-        chara.y += 5;
-        chara.state = MOVE;
+        if(check_collision(&chara)){
+            chara.x+=5;
+        }
     }else if( key_state[ALLEGRO_KEY_D] ){
         chara.dir = true;
         chara.x += 5;
         chara.state = MOVE;
-    }else if( key_state[ALLEGRO_KEY_SPACE] ){
-        chara.state = ATK;
+        if(check_collision(&chara)){
+            chara.x-=5;
+        }
+    }else if( key_state[ALLEGRO_KEY_S] ){
+        chara.y += 5;
+        chara.state = MOVE;
+        if(check_collision(&chara)){
+            chara.y-=5;
+        }
+    }else if( key_state[ALLEGRO_KEY_W] ){
+        chara.y -= 5;
+        chara.state = MOVE;
+        if(check_collision(&chara)){
+            chara.y+=5;
+        }
+    }else if(key_state[ALLEGRO_KEY_SPACE]){
+        cnt=0;
+        chara.init_y=chara.y;
+        chara.state = JUMP;
     }else if( chara.anime == chara.anime_time-1 ){
         chara.anime = 0;
         chara.state = STOP;
@@ -94,8 +169,8 @@ void character_draw(){
             al_draw_bitmap(chara.img_move[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
         else
             al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
-    }else if( chara.state == MOVE ){
-        if( chara.dir ){
+    }else if(chara.state == MOVE ){
+        if(chara.dir ){
             if( chara.anime < chara.anime_time/2 ){
                 al_draw_bitmap(chara.img_move[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
             }else{
@@ -108,7 +183,7 @@ void character_draw(){
                 al_draw_bitmap(chara.img_move[1], chara.x, chara.y, 0);
             }
         }
-    }else if( chara.state == ATK ){
+    }else if( chara.state == JUMP ){
         if( chara.dir ){
             if( chara.anime < chara.anime_time/2 ){
                 al_draw_bitmap(chara.img_atk[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);

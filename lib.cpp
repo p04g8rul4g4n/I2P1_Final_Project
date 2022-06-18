@@ -31,10 +31,15 @@ void al_rest(double time)
     // flag=0,ALLEGRO_FLIP_HORIZONTAL,ALLEGRO_FLIP_VERTICAL
     al_destroy_bitmap(img); //destroy image
     
+    ### related function
+    	width=al_get_bitmap_width(bitmap);
+    	height=al_get_bitmap_height(bitmap);
+
+
 ## display hollow rectangle
     #include <allegro5/allegro_primitives.h>
     al_init_primitives_addon();
-    al_draw_rectangle(up_letf_x,up_left_y,down_right_x,down_right_y,color, edge_width);//draw rectangle
+    al_draw_rectangle(up_letf_x,up_left_y,down_right_x,down_right_y,al_map_rgb(r,g,b), edge_width);//draw rectangle
     //no destroy
 
 ## event queue
