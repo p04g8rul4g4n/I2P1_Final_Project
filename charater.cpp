@@ -1,8 +1,10 @@
 #include "charater.h"
+#define ADD_JUMP_HEIGHT 10
+#define ADD_TIME 30
 
 // the state of character
 int cnt=0,tmp;
-enum {STOP = 0, MOVE, JUMP};
+enum {STOP = 0, MOVE, JUMP,USE};
 typedef struct character
 {
     int x, y; // the position of image
@@ -14,13 +16,11 @@ typedef struct character
     int time; // 時間
     int point; // 得分
     int jump_speed,jump_time,init_y;
+    int tool[2]={0};
 
-    ALLEGRO_BITMAP *img_move[6];
-    ALLEGRO_BITMAP *img_skill[4]; // 藥水 高度 命 時間
-    ALLEGRO_BITMAP *img_tool[2]; // 刀或劍
+    ALLEGRO_BITMAP *img_move[7];
+    ALLEGRO_BITMAP *img_tool[7];
     ALLEGRO_BITMAP *img_trap[5];
-
-    ALLEGRO_BITMAP *img_atk[2];
 
     ALLEGRO_SAMPLE_INSTANCE *move_Sound;
     int anime; // counting the time of animation
@@ -37,34 +37,22 @@ void character_init(){
         char temp[50];
         sprintf( temp, "./image/chara7_%d.png", i );
         chara.img_move[i-1] = al_load_bitmap(temp);
+        if(chara.img_move[i-1]==NULL)printf("%djizz\n",i);
         // 載入圖片
     }
 
     for(int i = 1 ; i <= 4 ; i++){
         char temp[50];
-        sprintf( temp, "./image/skill%d.png", i );
-        chara.img_skill[i-1] = al_load_bitmap(temp);
-        // 載入圖片
-    }
-    for(int i = 1 ; i <= 6 ; i++){
-        char temp[50];
         sprintf( temp, "./image/tool%d.png", i );
         chara.img_tool[i-1] = al_load_bitmap(temp);
         // 載入圖片
     }
-    for(int i = 1 ; i <= 6 ; i++){
+    for(int i = 1 ; i <= 3 ; i++){
         char temp[50];
         sprintf( temp, "./image/trap%d.png", i );
         chara.img_trap[i-1] = al_load_bitmap(temp);
         // 載入圖片
     }
-    for(int i = 1 ; i <= 2 ; i++){
-        char temp[50];
-        sprintf( temp, "./image/char_atk%d.png", i );
-        chara.img_atk[i-1] = al_load_bitmap(temp);
-
-    }
-
 
     // load effective sound
     sample = al_load_sample("./sound/atk_sound.wav");
@@ -87,7 +75,7 @@ void character_init(){
 
     chara.chance = 1;
     chara.blood = 10;
-    chara.time = 60;
+    chara.time = 60*FPS;
     chara.point = 0;
     chara.jump_speed=20;
     chara.jump_time = 0;
@@ -104,6 +92,7 @@ void charater_process(ALLEGRO_EVENT event){
         if(event.timer.source==fps&&chara.state==JUMP){
             cnt++;
         }
+        chara.time--;
     // process the keyboard event
     }else if( event.type == ALLEGRO_EVENT_KEY_DOWN ){
         key_state[event.keyboard.keycode] = true;
@@ -135,6 +124,31 @@ int check_collision(Character* ch){
 int jump(int jump_speed,int jump_time){
     int res=jump_speed-jump_time;
     return res;
+}
+void use(int tool_num){
+    if(tool_num==1){ //knife
+        //TBA
+    }
+    else if(tool_num==2){ //life
+        chara.chance++;
+    }
+    else if(tool_num==3){ //add jump height
+        chara.jump_speed+=ADD_JUMP_HEIGHT;
+    }
+    else if(tool_num==4){ //add time
+        chara.time+=ADD_TIME*FPS;
+    }
+}
+void trigger(int trap_num){
+    if(trap_num==1){ //monster
+        chara.blood-=5;
+    }
+    else if(trap_num==2){ //bomb
+        chara.blood-=5;
+    }
+    else if(trap_num==3){ //sub time
+        chara.time-=ADD_TIME*FPS;
+    }
 }
 void charater_update(){
     // use the idea of finite state machine to deal with different state
@@ -198,6 +212,16 @@ void charater_update(){
     }else if ( chara.anime == 0 ){
         chara.state = STOP;
     }
+    if(key_state[ALLEGRO_KEY_R]){
+        chara.state=USE;
+        use(chara.tool[0]);
+        chara.tool[0]=0;
+    }
+    else if(key_state[ALLEGRO_KEY_T]){
+        chara.state=USE;
+        use(chara.tool[1]);
+        chara.tool[1]=0;
+    }
 }
 void character_draw(){
     // with the state, draw corresponding image
@@ -237,12 +261,8 @@ void character_draw(){
     }
 }
 void character_destory(){
-    al_destroy_bitmap(chara.img_atk[0]);
-    al_destroy_bitmap(chara.img_atk[1]);
     for(int i = 0; i < 6; i++)
         al_destroy_bitmap(chara.img_move[i]);
-    for(int i = 0; i < 4; i++)
-        al_destroy_bitmap(chara.img_skill[i]);
     for(int i = 0; i < 4; i++)
         al_destroy_bitmap(chara.img_tool[i]);
     for(int i = 0; i < 5; i++)
