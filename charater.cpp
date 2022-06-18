@@ -41,7 +41,7 @@ void character_init(){
     chara.x = WIDTH/2;
     chara.y = HEIGHT/2;
     chara.dir = false;
-    chara.jump_speed=30;
+    chara.jump_speed=20;
 
     // initial the animation component
     chara.state = STOP;
@@ -67,18 +67,21 @@ void charater_process(ALLEGRO_EVENT event){
         key_state[event.keyboard.keycode]=false;
     }
 }
-bool in_range(int x,int y){
-    if(x>=BOUND&&x<=BOUND+100&&y>=BOUND&&y<=BOUND+100)
-        return true;
+int in_range(int chara_x,int chara_y,w *t){
+    if(chara_x>t->x&&chara_x<t->x+t->width&&chara_y>t->y&&chara_y<t->y+t->height)
+        return 1;
     else
-        return false;
+        return 0;
 }
 int check_collision(Character* ch){
-    int dx=ch->width/2,dy=ch->height/2;
+    int dx=ch->width/2,dy=ch->height/2,res;
     for(int i=0;i<3;++i){
         for(int j=0;j<3;++j){
-            if(in_range(ch->x+dx*j,ch->y+dy*i)){
-                return i*3+j+1;
+            for(int k=0;k<wall_count;++k){
+               res=in_range(ch->x+dx*j,ch->y+dy*i,&wall[k]);
+                if(res){
+                    return res;
+                } 
             }
         }
     }
@@ -92,35 +95,24 @@ void charater_update(){
     // use the idea of finite state machine to deal with different state
     if(chara.state==JUMP){
         if(cnt==2){
-            int dx,dy;
+            int dx,dy,step=3;
             cnt=0;
             chara.jump_time++;
             dy=jump(chara.jump_speed,chara.jump_time);
             chara.y-=dy;
             tmp=check_collision(&chara);
-            printf("%d %d\n",chara.x,chara.y);
-            printf("%d ",tmp);
-            if(chara.y>chara.init_y){
-                chara.y=chara.init_y;
-                chara.state=STOP;
-                chara.jump_time=0;
-            }
-            else if(tmp!=0&&tmp<=3){
+            if((tmp&&dy>=0)||chara.y<0){
                 chara.y+=dy;
             }
-            else if(tmp<=9&&tmp>=7){
+            else if((dy<0&&tmp)||chara.y+chara.height>HEIGHT){
                 chara.y+=dy;
                 chara.state=STOP;
                 chara.jump_time=0;
             }
-            dx=(chara.dir?1:-1);
+            dx=(chara.dir?1:-1)*step;
             chara.x+=dx;
             tmp=check_collision(&chara);
-            printf("%d\n",tmp);
-            if(tmp%3==1){
-                chara.x-=dx;
-            }
-            else if(tmp!=0&&tmp%3==0){
+            if(tmp||chara.x<0||chara.x+chara.width>WIDTH){
                 chara.x-=dx;
             }
         }
@@ -130,26 +122,26 @@ void charater_update(){
         chara.x -= 5;
         chara.state = MOVE;
         if(check_collision(&chara)){
-            chara.x+=5;
+            chara.x += 5;
         }
     }else if( key_state[ALLEGRO_KEY_D] ){
         chara.dir = true;
         chara.x += 5;
         chara.state = MOVE;
         if(check_collision(&chara)){
-            chara.x-=5;
+            chara.x -= 5;
         }
     }else if( key_state[ALLEGRO_KEY_S] ){
         chara.y += 5;
         chara.state = MOVE;
         if(check_collision(&chara)){
-            chara.y-=5;
+            chara.y -= 5;
         }
     }else if( key_state[ALLEGRO_KEY_W] ){
         chara.y -= 5;
         chara.state = MOVE;
         if(check_collision(&chara)){
-            chara.y+=5;
+            chara.y += 5;
         }
     }else if(key_state[ALLEGRO_KEY_SPACE]){
         cnt=0;

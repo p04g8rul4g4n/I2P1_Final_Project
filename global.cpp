@@ -5,6 +5,8 @@ const float FPS = 60.0;
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
 const int BOUND = 150;
+w wall[10];
+int wall_count;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_TIMER *fps = NULL;
 bool key_state[ALLEGRO_KEY_MAX] = {false};

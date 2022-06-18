@@ -6,17 +6,6 @@ ALLEGRO_BITMAP *menu = NULL;
 ALLEGRO_BITMAP *background = NULL;
 ALLEGRO_BITMAP *exit_img = NULL;
 
-typedef struct wall
-{
-    int x,y;
-    int width, height;
-    bool exist;
-    ALLEGRO_BITMAP *img;
-}w;
-
-w wall[10];
-int wall_count;
-
 
 // function of menu
 void menu_init(){ // 顯示字體
@@ -84,15 +73,14 @@ void game_scene_init()
     }
     exit_img=al_load_bitmap("./image/exit.png");
 
-
-
 }
 void game_scene_draw(){
 
     al_draw_bitmap(background, 0, 0, 0);
 
-    for(int i=0;i<wall_count;i++)
+    for(int i=0;i<wall_count;i++){
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
+    }
     al_draw_bitmap(exit_img,1750,100,0);
     character_draw();
 }
