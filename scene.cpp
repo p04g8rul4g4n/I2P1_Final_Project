@@ -28,6 +28,7 @@ void game_scene_init(){
 }
 void game_scene_draw(){
     al_draw_bitmap(background, 0, 0, 0);
+    al_draw_rectangle(150,150,250,250,al_map_rgb(0,0,0),5);//draw rectangle
     character_draw();
 }
 void game_scene_destroy(){

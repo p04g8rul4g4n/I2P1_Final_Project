@@ -12,7 +12,6 @@ ALLEGRO_SAMPLE_INSTANCE *sample_instance;
 
 int Game_establish() {
     int msg = 0;
-
     game_init();
     game_begin();
 
