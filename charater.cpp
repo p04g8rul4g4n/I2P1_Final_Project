@@ -19,8 +19,6 @@ typedef struct character
     int tool[2]={0};
 
     ALLEGRO_BITMAP *img_move[7];
-    ALLEGRO_BITMAP *img_tool[7];
-    ALLEGRO_BITMAP *img_trap[5];
 
     ALLEGRO_SAMPLE_INSTANCE *move_Sound;
     int anime; // counting the time of animation
@@ -37,20 +35,6 @@ void character_init(){
         char temp[50];
         sprintf( temp, "./image/chara7_%d.png", i );
         chara.img_move[i-1] = al_load_bitmap(temp);
-        if(chara.img_move[i-1]==NULL)printf("%djizz\n",i);
-        // 載入圖片
-    }
-
-    for(int i = 1 ; i <= 4 ; i++){
-        char temp[50];
-        sprintf( temp, "./image/tool%d.png", i );
-        chara.img_tool[i-1] = al_load_bitmap(temp);
-        // 載入圖片
-    }
-    for(int i = 1 ; i <= 3 ; i++){
-        char temp[50];
-        sprintf( temp, "./image/trap%d.png", i );
-        chara.img_trap[i-1] = al_load_bitmap(temp);
         // 載入圖片
     }
 
@@ -260,12 +244,8 @@ void character_draw(){
         }
     }
 }
-void character_destory(){
+void character_destroy(){
     for(int i = 0; i < 6; i++)
         al_destroy_bitmap(chara.img_move[i]);
-    for(int i = 0; i < 4; i++)
-        al_destroy_bitmap(chara.img_tool[i]);
-    for(int i = 0; i < 5; i++)
-        al_destroy_bitmap(chara.img_trap[i]);
     al_destroy_sample_instance(chara.move_Sound);
 }

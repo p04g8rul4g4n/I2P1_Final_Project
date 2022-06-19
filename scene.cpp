@@ -46,12 +46,38 @@ void menu_destroy(){
 // function of game_scene
 void game_scene_init()
 {
-
+    wall_count=0;
     character_init();
     background = al_load_bitmap("./image/background.jpg");
+    //Load Background
 
 
-    FILE *input= fopen("./level.txt", "r+");
+    for(int i=0;i<20;i++)
+    {
+        wall[i].img=al_load_bitmap("./image/wall3.jpg");
+        wall[i].width=al_get_bitmap_width(wall[i].img);
+        wall[i].height=al_get_bitmap_height(wall[i].img);
+    }//Load wall image
+
+   for(int i = 1 ; i <= 4 ; i++){
+        char temp[50];
+        sprintf( temp, "./image/tool%d.png", i );
+        img_tool[i-1] = al_load_bitmap(temp);
+        // 載入圖片
+    }
+    for(int i = 1 ; i <= 3 ; i++){
+        char temp[50];
+        sprintf( temp, "./image/trap%d.png", i );
+        img_trap[i-1] = al_load_bitmap(temp);
+        // 載入圖片
+    }
+    exit_img=al_load_bitmap("./image/exit.png");
+
+
+}
+void game_scene_draw1()
+{
+        FILE *input= fopen("./level.txt", "r+");
     if (input==NULL)
         printf("Error opening file");
     else
@@ -63,31 +89,100 @@ void game_scene_init()
                 sscanf(buff,"%d %d",&wall[wall_count].x,&wall[wall_count].y);
         }
     }
-    fclose(input);
-
-    for(int i=0;i<wall_count;i++)
-    {
-        wall[i].img=al_load_bitmap("./image/wall3.jpg");
-        wall[i].width = al_get_bitmap_width(wall[i].img);
-        wall[i].height = al_get_bitmap_height(wall[i].img);
-    }
-    exit_img=al_load_bitmap("./image/exit.png");
-
-}
-void game_scene_draw(){
+    fclose(input);//Load coor of walls
 
     al_draw_bitmap(background, 0, 0, 0);
-
-    for(int i=0;i<wall_count;i++){
+    for(int i=0;i<wall_count;i++)
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
-    }
     al_draw_bitmap(exit_img,1750,100,0);
+    al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
+    al_draw_bitmap(img_trap[0],1500,400,0);
+    al_draw_bitmap(img_trap[1],650,640,0);
+    al_draw_bitmap(img_tool[0],330,750,0);
+    al_draw_bitmap(img_tool[3],400,430,0);
+    character_draw();
+}
+void game_scene_draw2()
+{
+    FILE *input= fopen("./level2.txt", "r+");
+    if (input==NULL)
+        printf("Error opening file");
+    else
+    {
+        char buff[20];
+        while(feof(input)==0)
+        {
+           for (wall_count=0; fgets( buff,sizeof buff,input ) != NULL;wall_count++)
+                sscanf(buff,"%d %d",&wall[wall_count].x,&wall[wall_count].y);
+        }
+    }
+    fclose(input);//Load coor of walls
+
+
+    al_draw_bitmap(background, 0, 0, 0);
+    for(int i=0;i<wall_count;i++)
+        al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
+    al_draw_bitmap(exit_img,1750,100,0);
+    al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
+    al_draw_bitmap(img_trap[0],1550,350,0);
+    al_draw_bitmap(img_trap[0],1600,800,0);
+    al_draw_bitmap(img_trap[1],650,640,0);
+    al_draw_bitmap(img_trap[1],1450,590,0);
+    al_draw_bitmap(img_trap[2],930,740,0);
+    al_draw_bitmap(img_tool[0],330,750,0);
+    al_draw_bitmap(img_tool[1],990,75,0);
+    al_draw_bitmap(img_tool[2],1240,875,0);
+    character_draw();
+}
+void game_scene_draw3()
+{
+    FILE *input= fopen("./level3.txt", "r+");
+    if (input==NULL)
+        printf("Error opening file");
+    else
+    {
+        char buff[20];
+        while(feof(input)==0)
+        {
+           for (wall_count=0; fgets( buff,sizeof buff,input ) != NULL;wall_count++)
+                sscanf(buff,"%d %d",&wall[wall_count].x,&wall[wall_count].y);
+        }
+    }
+    fclose(input);//Load coor of walls
+
+    al_draw_bitmap(background, 0, 0, 0);
+    for(int i=0;i<wall_count;i++)
+        al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
+    al_draw_bitmap(exit_img,1750,100,0);
+    al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
+    al_draw_bitmap(img_tool[0],330,750,0);
+    al_draw_bitmap(img_trap[0],730,200,0);
+    al_draw_bitmap(img_trap[2],650,640,0);
+    al_draw_bitmap(img_trap[0],920,750,0);
+    al_draw_bitmap(img_trap[1],990,30,0);
+    al_draw_bitmap(img_trap[1],1050,400,0);
+    al_draw_bitmap(img_trap[2],1240,880,0);
+    al_draw_bitmap(img_trap[0],1240,200,0);
+    al_draw_bitmap(img_trap[1],1450,570,0);
+    al_draw_bitmap(img_trap[2],1570,330,0);
+    al_draw_bitmap(img_trap[2],1620,780,0);
+
+
     character_draw();
 }
 void game_scene_destroy(){
     al_destroy_bitmap(background);
-    al_destroy_bitmap(exit_img);
+
     for(int i=0;i<wall_count;i++)
         al_destroy_bitmap(wall[i].img);
-    character_destory();
+    for(int i = 1 ; i <= 4 ; i++)
+    {
+        al_destroy_bitmap(img_tool[i-1]);
+    }
+    for(int i = 1 ; i <= 3 ; i++)
+    {
+        al_destroy_bitmap(img_trap[i-1]);
+    }
+    al_destroy_bitmap(exit_img);
+    character_destroy();
 }

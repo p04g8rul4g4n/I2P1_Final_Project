@@ -113,7 +113,7 @@ void game_draw(){
     if( window == 1 ){
         menu_draw();
     }else if( window == 2 ){
-        game_scene_draw();
+        game_scene_draw2();
     }
     al_flip_display();
 }

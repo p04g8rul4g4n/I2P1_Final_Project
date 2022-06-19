@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1655584763 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
+1655616388 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
 	"charater.h"
 
-1653053495 c:\users\user\desktop\study\計程一\i2p1_final_project\charater.h
+1655616264 c:\users\user\desktop\study\計程一\i2p1_final_project\charater.h
 	"global.h"
 
-1655582555 c:\users\user\desktop\study\計程一\i2p1_final_project\global.h
+1655615210 c:\users\user\desktop\study\計程一\i2p1_final_project\global.h
 	<stdio.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
@@ -316,7 +316,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1655573619 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
+1655616108 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
 	"GameWindow.h"
 
 1653053495 c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.h
@@ -324,16 +324,16 @@
 	"charater.h"
 	"scene.h"
 
-1653053495 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
+1655621894 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
 	"global.h"
 	"charater.h"
 
-1655582548 source:c:\users\user\desktop\study\計程一\i2p1_final_project\global.cpp
+1655617196 source:c:\users\user\desktop\study\計程一\i2p1_final_project\global.cpp
 	"global.h"
 
 1653053495 source:c:\users\user\desktop\study\計程一\i2p1_final_project\main.cpp
 	"GameWindow.h"
 
-1655582704 source:c:\users\user\desktop\study\計程一\i2p1_final_project\scene.cpp
+1655622562 source:c:\users\user\desktop\study\計程一\i2p1_final_project\scene.cpp
 	"scene.h"
 
