@@ -125,6 +125,7 @@ void use(int tool_num){
     }
 }
 void trigger(int trap_num){
+    printf("%d\n",trap_num);
     if(trap_num==1){ //monster
         chara.blood-=5;
     }
@@ -134,6 +135,55 @@ void trigger(int trap_num){
     else if(trap_num==3){ //sub time
         chara.time-=ADD_TIME*FPS;
     }
+}
+void pick(int tool_num){
+    int flag=1;
+    printf("%d %d %d\n",tool_num,chara.tool[0],chara.tool[1]);
+    for(int i=0;i<2;++i){
+        if(chara.tool[i]==0){
+            chara.tool[i]=tool_num;
+            flag=0;
+            break;
+        }
+    }
+    if(flag){
+        chara.tool[0]=chara.tool[1];
+        chara.tool[1]=tool_num;
+    }
+}
+int check_trap(int on_stage){
+    int res;
+    if(next_window==2&&level1_trap[on_stage]!=-1){
+        res=level1_trap[on_stage];
+        level1_trap[on_stage]=-1;
+        return res;
+    }else if(next_window==3&&level2_trap[on_stage]!=-1){
+        res=level2_trap[on_stage];
+        level2_trap[on_stage]=-1;
+        return res;
+    }else if(next_window==4&&level3_trap[on_stage]!=-1){
+        res=level3_trap[on_stage];
+        level3_trap[on_stage]=-1;
+        return res;
+    }
+    return -1;
+}
+int check_tool(int on_stage){
+    int res;
+    if(next_window==2&&level1_tool[on_stage]!=-1){
+        res=level1_tool[on_stage];
+        level1_tool[on_stage]=-1;
+        return res;
+    }else if(next_window==3&&level2_tool[on_stage]!=-1){
+        res=level2_tool[on_stage];
+        level2_tool[on_stage]=-1;
+        return res;
+    }else if(next_window==4&&level3_tool[on_stage]!=-1){
+        res=level3_tool[on_stage];
+        level3_tool[on_stage]=-1;
+        return res;
+    }
+    return -1;
 }
 void charater_update(){
     // use the idea of finite state machine to deal with different state
@@ -149,10 +199,22 @@ void charater_update(){
                 chara.y+=dy;
             }
             else if((dy<0&&tmp)||chara.y+chara.height>HEIGHT){
+                int res;
                 chara.y+=dy;
                 chara.state=STOP;
                 chara.jump_time=0;
                 chara.on_stage=tmp-1;
+                res=check_trap(chara.on_stage);
+                if(res!=-1){
+                    trigger(res+1);
+                    //delete trap
+                }
+                res=check_tool(chara.on_stage);
+                if(res!=-1){
+                    pick(res+1);
+                    //delete tool
+                }
+                printf("stage: %d\n",chara.on_stage);
             }
             dx=(chara.dir?1:-1)*step;
             chara.x+=dx;
