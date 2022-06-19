@@ -18,7 +18,7 @@ typedef struct wall
     ALLEGRO_BITMAP *img;
 }w;
 
-// note that you can't assign initial value here!
+// note that you can't assign initial value here
 extern const float FPS;
 extern const int WIDTH;
 extern const int HEIGHT;

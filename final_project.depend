@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1655632138 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
+1655639249 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
 	"charater.h"
 
-1655616264 c:\users\user\desktop\study\計程一\i2p1_final_project\charater.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\charater.h
 	"global.h"
 
-1655629193 c:\users\user\desktop\study\計程一\i2p1_final_project\global.h
+1655642699 c:\users\user\desktop\study\計程一\i2p1_final_project\global.h
 	<stdio.h>
 	<allegro5/allegro.h>
 	<allegro5/allegro_primitives.h>
@@ -15,7 +15,7 @@
 	<allegro5/allegro_font.h>
 	<allegro5/allegro_ttf.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro.h
 	"allegro5/base.h"
 	"allegro5/altime.h"
 	"allegro5/bitmap.h"
@@ -56,7 +56,7 @@
 	"allegro5/utf8.h"
 	"allegro5/alcompat.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\base.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\base.h
 	<errno.h>
 	<limits.h>
 	<limits.h>
@@ -70,7 +70,7 @@
 	<dmalloc.h>
 	"allegro5/internal/alconfig.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\internal\alconfig.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\internal\alconfig.h
 	"allegro5/platform/alplatf.h"
 	"allegro5/platform/alwatcom.h"
 	"allegro5/platform/almngw32.h"
@@ -85,9 +85,9 @@
 	"allegro5/platform/astdint.h"
 	"allegro5/platform/astdbool.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alplatf.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alplatf.h
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alwatcom.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alwatcom.h
 	<io.h>
 	<i86.h>
 	<conio.h>
@@ -95,145 +95,145 @@
 	<direct.h>
 	<malloc.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\almngw32.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\almngw32.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 	"allegro5/platform/alplatf.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\albcc32.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\albcc32.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\almsvc.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\almsvc.h
 	<io.h>
 	<fcntl.h>
 	<direct.h>
 	<malloc.h>
 	"allegro5/platform/alplatf.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\aliphonecfg.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\aliphonecfg.h
 	<fcntl.h>
 	<unistd.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alosxcfg.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alosxcfg.h
 	"allegro5/platform/alplatf.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alandroidcfg.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alandroidcfg.h
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alraspberrypicfg.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alraspberrypicfg.h
 	<fcntl.h>
 	<unistd.h>
 	<sys/types.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alucfg.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alucfg.h
 	<fcntl.h>
 	<unistd.h>
 	"alunix.h"
 	"allegro5/platform/alplatf.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alunix.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\alunix.h
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\allegro_sdl_config.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\allegro_sdl_config.h
 	<fcntl.h>
 	<unistd.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\astdint.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\astdint.h
 	<inttypes.h>
 	<stdint.h>
 	<limits.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\astdbool.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\platform\astdbool.h
 	<stdbool.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\altime.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\altime.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap.h
 	"allegro5/color.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\color.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\color.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_draw.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_draw.h
 	"allegro5/bitmap.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_io.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_io.h
 	"allegro5/bitmap.h"
 	"allegro5/file.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\file.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\file.h
 	"allegro5/base.h"
 	"allegro5/path.h"
 	"allegro5/utf8.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\path.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\path.h
 	"allegro5/base.h"
 	"allegro5/utf8.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\utf8.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\utf8.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_lock.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\bitmap_lock.h
 	"allegro5/bitmap.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\blender.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\blender.h
 	"allegro5/base.h"
 	"allegro5/color.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\clipboard.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\clipboard.h
 	"allegro5/base.h"
 	"allegro5/display.h"
 	"allegro5/utf8.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\display.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\display.h
 	"allegro5/bitmap.h"
 	"allegro5/color.h"
 	"allegro5/events.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\events.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\events.h
 	"allegro5/altime.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\config.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\config.h
 	"allegro5/file.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\cpu.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\cpu.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\debug.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\debug.h
 	<assert.h>
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\drawing.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\drawing.h
 	"allegro5/color.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\error.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\error.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fixed.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fixed.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fmaths.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fmaths.h
 	"allegro5/base.h"
 	"allegro5/fixed.h"
 	"allegro5/inline/fmaths.inl"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\inline\fmaths.inl
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\inline\fmaths.inl
 	"allegro5/error.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fshook.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fshook.h
 	"allegro5/base.h"
 	"allegro5/file.h"
 	"allegro5/path.h"
 	<sys/types.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fullscreen_mode.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\fullscreen_mode.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\haptic.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\haptic.h
 	"allegro5/base.h"
 	"allegro5/display.h"
 	"allegro5/events.h"
@@ -242,96 +242,96 @@
 	"allegro5/mouse.h"
 	"allegro5/touch_input.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\joystick.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\joystick.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\keyboard.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\keyboard.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 	"allegro5/keycodes.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\keycodes.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\keycodes.h
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\mouse.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\mouse.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\touch_input.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\touch_input.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\memory.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\memory.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\monitor.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\monitor.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\mouse_cursor.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\mouse_cursor.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\render_state.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\render_state.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\shader.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\shader.h
 	"allegro5/base.h"
 	"allegro5/transformations.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\transformations.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\transformations.h
 	"allegro5/display.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\system.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\system.h
 	"allegro5/config.h"
 	"allegro5/path.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\threads.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\threads.h
 	"allegro5/altime.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\timer.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\timer.h
 	"allegro5/base.h"
 	"allegro5/events.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\tls.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\tls.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\alcompat.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\alcompat.h
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_primitives.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_primitives.h
 	<allegro5/allegro.h>
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_image.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_image.h
 	"allegro5/base.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_audio.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_audio.h
 	"allegro5/allegro.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_acodec.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_acodec.h
 	"allegro5/allegro.h"
 	"allegro5/allegro_audio.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_font.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_font.h
 	"allegro5/allegro.h"
 
-1615199857 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_ttf.h
+1655639249 c:\users\user\desktop\study\計程一\i2p1_final_project\allegro\include\allegro5\allegro_ttf.h
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1655628235 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
+1655639248 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
 	"GameWindow.h"
 
-1653053495 c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.h
+1655639248 c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.h
 	"global.h"
 	"charater.h"
 	"scene.h"
 
-1655624554 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
+1655639250 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
 	"global.h"
 	"charater.h"
 
-1655630204 source:c:\users\user\desktop\study\計程一\i2p1_final_project\global.cpp
+1655642840 source:c:\users\user\desktop\study\計程一\i2p1_final_project\global.cpp
 	"global.h"
 
-1653053495 source:c:\users\user\desktop\study\計程一\i2p1_final_project\main.cpp
+1655639250 source:c:\users\user\desktop\study\計程一\i2p1_final_project\main.cpp
 	"GameWindow.h"
 
 1655629867 source:c:\users\user\desktop\study\計程一\i2p1_final_project\scene.cpp

@@ -11,6 +11,46 @@ ALLEGRO_FONT *GUIDANCEtitlefont = NULL;
 ALLEGRO_BITMAP *Start = NULL;
 ALLEGRO_BITMAP *BackMenu = NULL;
 
+typedef struct
+{
+    int x,y;  //coor
+    int kind; // 1 for trap ;0 for tool
+    int thing;
+    int id;
+}trap_tool;
+
+trap_tool level1[4]={
+    {x:330,y:750,kind:0,thing:0,id:1},
+    {x:400,y:430,kind:0,thing:3,id:2},
+    {x:650,y:640,kind:1,thing:1,id:3},
+    {x:1500,y:400,kind:1,thing:0,id:7}
+    };
+
+trap_tool level2[8]={
+    {x:1550,y:350,kind:1,thing:0,id:10},
+    {x:1600,y:800,kind:1,thing:0,id:11},
+    {x:650,y:640,kind:1,thing:1,id:3},
+    {x:1450,y:590,kind:1,thing:1,id:9},
+    {x:930,y:740,kind:1,thing:2,id:5},
+    {x:330,y:750,kind:0,thing:0,id:1},
+    {x:990,y:75,kind:0,thing:1,id:6},
+    {x:1240,y:875,kind:0,thing:2,id:8},
+    };
+trap_tool level3[11]={
+    {x:730,y:200,kind:1,thing:0,id:4},
+    {x:650,y:640,kind:1,thing:2,id:3},
+    {x:920,y:750,kind:1,thing:0,id:5},
+    {x:990,y:30,kind:1,thing:1,id:6},
+    {x:1050,y:400,kind:1,thing:1,id:7},
+    {x:1240,y:880,kind:1,thing:2,id:8},
+    {x:1240,y:200,kind:1,thing:0,id:9},
+    {x:1450,y:570,kind:1,thing:1,id:10},
+    {x:1570,y:330,kind:1,thing:2,id:11},
+    {x:1620,y:780,kind:1,thing:2,id:12},
+    {x:330,y:750,kind:0,thing:0,id:1}
+    };
+
+
 
 // function of menu
 void menu_init(){ // 顯示字體
@@ -123,17 +163,29 @@ void game_scene_draw1()
                 sscanf(buff,"%d %d",&wall[wall_count].x,&wall[wall_count].y);
         }
     }
-    fclose(input);//Load coor of walls
+    fclose(input); //Load coor of walls
+
 
     al_draw_bitmap(background, 0, 0, 0);
     for(int i=0;i<wall_count;i++)
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
     al_draw_bitmap(exit_img,1750,100,0);
     al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
-    al_draw_bitmap(img_trap[0],1500,400,0);
-    al_draw_bitmap(img_trap[1],650,640,0);
-    al_draw_bitmap(img_tool[0],330,750,0);
-    al_draw_bitmap(img_tool[3],400,430,0);
+
+    for(int j=0;j<wall_count;++j)
+    {
+        if(level1_tool[j]!=-1||level1_trap[j]!=-1)
+        {
+            for(int i=0;i<4;++i){
+                if(level1[i].id==j){
+                    if(level1[i].kind==1)
+                        al_draw_bitmap(img_trap[level1[i].thing],level1[i].x,level1[i].y,0);
+                    else
+                        al_draw_bitmap(img_tool[level1[i].thing],level1[i].x,level1[i].y,0);
+                }
+            }
+        }
+    }
     character_draw();
 }
 void game_scene_draw2()
@@ -158,14 +210,22 @@ void game_scene_draw2()
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
     al_draw_bitmap(exit_img,1750,100,0);
     al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
-    al_draw_bitmap(img_trap[0],1550,350,0);
-    al_draw_bitmap(img_trap[0],1600,800,0);
-    al_draw_bitmap(img_trap[1],650,640,0);
-    al_draw_bitmap(img_trap[1],1450,590,0);
-    al_draw_bitmap(img_trap[2],930,740,0);
-    al_draw_bitmap(img_tool[0],330,750,0);
-    al_draw_bitmap(img_tool[1],990,75,0);
-    al_draw_bitmap(img_tool[2],1240,875,0);
+
+    for(int j=0;j<wall_count;++j)
+    {
+        if(level2_tool[j]!=-1||level2_trap[j]!=-1)
+        {
+            for(int i=0;i<8;++i){
+                if(level2[i].id==j){
+                    if(level2[i].kind==1)
+                        al_draw_bitmap(img_trap[level2[i].thing],level2[i].x,level2[i].y,0);
+                    else
+                        al_draw_bitmap(img_tool[level2[i].thing],level2[i].x,level2[i].y,0);
+                }
+            }
+        }
+    }
+
     character_draw();
 }
 void game_scene_draw3()
@@ -189,19 +249,21 @@ void game_scene_draw3()
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
     al_draw_bitmap(exit_img,1750,100,0);
     al_draw_rectangle(20,350,550,20,al_map_rgb(255, 22, 25),3);
-    al_draw_bitmap(img_tool[0],330,750,0);
-    al_draw_bitmap(img_trap[0],730,200,0);
-    al_draw_bitmap(img_trap[2],650,640,0);
-    al_draw_bitmap(img_trap[0],920,750,0);
-    al_draw_bitmap(img_trap[1],990,30,0);
-    al_draw_bitmap(img_trap[1],1050,400,0);
-    al_draw_bitmap(img_trap[2],1240,880,0);
-    al_draw_bitmap(img_trap[0],1240,200,0);
-    al_draw_bitmap(img_trap[1],1450,570,0);
-    al_draw_bitmap(img_trap[2],1570,330,0);
-    al_draw_bitmap(img_trap[2],1620,780,0);
 
-
+    for(int j=0;j<wall_count;++j)
+    {
+        if(level3_tool[j]!=-1||level3_trap[j]!=-1)
+        {
+            for(int i=0;i<11;++i){
+                if(level3[i].id==j){
+                    if(level3[i].kind==1)
+                        al_draw_bitmap(img_trap[level3[i].thing],level3[i].x,level3[i].y,0);
+                    else
+                        al_draw_bitmap(img_tool[level3[i].thing],level3[i].x,level3[i].y,0);
+                }
+            }
+        }
+    }
     character_draw();
 }
 void game_scene_draw4(){
