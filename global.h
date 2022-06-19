@@ -28,6 +28,7 @@ extern bool key_state[ALLEGRO_KEY_MAX];
 extern bool judge_next_window;
 extern w wall[];
 extern int wall_count;
+extern int next_window;
 extern ALLEGRO_BITMAP *img_tool[];
 extern ALLEGRO_BITMAP *img_trap[];
 extern ALLEGRO_EVENT_QUEUE *event_queue;

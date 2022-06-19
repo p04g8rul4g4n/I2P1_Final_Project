@@ -79,16 +79,41 @@ void game_update(){
         if( window == 1 ){
             // not back menu anymore, therefore destroy it
             menu_destroy();
-            // initialize next scene
-            game_scene_init();
-            judge_next_window = false;
-            window = 2;
+            if( next_window == 1 ){ // GUIDANCE
+                // initialize next scene
+                game_scene_init2(); // 這要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 2; // => 這個會game_draw()
+            }if( next_window == 2 ){ // START
+                game_scene_init(); // 這要要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 3;
+            }if( next_window == 3){ // LEVEL
+                game_scene_init(); // 這要要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 4;
+            }if( next_window == 4){ // INFINITE MODE
+                game_scene_init(); // 這要要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 5;
+            }if( next_window == 5){ // SETTING
+                game_scene_init(); // 這要要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 5;
+            }if( next_window == 6){ // EXIT
+        // 這裡感覺可以想辦法直接return GAME_TERMINATE
+                game_scene_init(); // 這要要改成要進入的畫面的設定
+                judge_next_window = false;
+                window = 5;
+            }
+
         }
     }
-    if( window == 2 ){
+    if(window==3||window==4||window==5){
         charater_update();
     }
 }
+
 int process_event(){
     // Request the event
     ALLEGRO_EVENT event;
@@ -96,7 +121,7 @@ int process_event(){
     // process the event of other component
     if( window == 1 ){
         menu_process(event);
-    }else if( window == 2 ){
+    }else if( window == 3||window==4||window==5 ){
         charater_process(event);
     }
 
@@ -113,7 +138,13 @@ void game_draw(){
     if( window == 1 ){
         menu_draw();
     }else if( window == 2 ){
+        game_scene_draw4();
+    }else if(window==3){
+        game_scene_draw1();
+    }else if(window==4){
         game_scene_draw2();
+    }else if(window==5){
+        game_scene_draw3();
     }
     al_flip_display();
 }
@@ -134,4 +165,5 @@ void game_destroy() {
     al_destroy_event_queue(event_queue);
     al_destroy_display(display);
     game_scene_destroy();
+    game_scene_destroy2();
 }

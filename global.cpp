@@ -7,7 +7,7 @@ const int HEIGHT = 1080;
 const int BOUND = 150;
 const int MAX_WALL=30;
 w wall[MAX_WALL];
-int wall_count;
+int wall_count,next_window=0;
 ALLEGRO_BITMAP *img_tool[7];
 ALLEGRO_BITMAP *img_trap[5];
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;

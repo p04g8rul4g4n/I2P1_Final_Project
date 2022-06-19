@@ -5,6 +5,11 @@ ALLEGRO_FONT *Menufont = NULL;
 ALLEGRO_BITMAP *menu = NULL;
 ALLEGRO_BITMAP *background = NULL;
 ALLEGRO_BITMAP *exit_img = NULL;
+ALLEGRO_FONT *GUIDANCEcontextfont = NULL;
+ALLEGRO_BITMAP *GUIDANCEbackground = NULL;
+ALLEGRO_FONT *GUIDANCEtitlefont = NULL;
+ALLEGRO_BITMAP *Start = NULL;
+ALLEGRO_BITMAP *BackMenu = NULL;
 
 
 // function of menu
@@ -18,10 +23,29 @@ void menu_init(){ // 顯示字體
 }
 
 void menu_process(ALLEGRO_EVENT event){
-    if( event.type == ALLEGRO_EVENT_KEY_UP )
-        if( event.keyboard.keycode == ALLEGRO_KEY_ENTER )
+    if( event.type == ALLEGRO_EVENT_KEY_DOWN ){
+        if( event.keyboard.keycode == ALLEGRO_KEY_1 ){
+            judge_next_window =true ;
+            next_window = 1;
+        }else if( event.keyboard.keycode == ALLEGRO_KEY_2){
             judge_next_window = true;
+             next_window = 2;
+        }else if( event.keyboard.keycode == ALLEGRO_KEY_3){
+            judge_next_window = true;
+             next_window = 3;
+        }else if( event.keyboard.keycode == ALLEGRO_KEY_4){
+            judge_next_window = true;
+            next_window = 4;
+        }else if( event.keyboard.keycode == ALLEGRO_KEY_5){
+            judge_next_window = true;
+             next_window = 5;
+        }else if( event.keyboard.keycode == ALLEGRO_KEY_6){
+            judge_next_window = true;
+             next_window = 6;
+        }
+    }
 }
+
 
 void menu_draw(){
     // 畫面顏色 // 要改主畫面
@@ -29,11 +53,11 @@ void menu_draw(){
     // al_clear_to_color(al_map_rgb(100,100,100));
     // 顯示主選單的字 => 這邊可以考慮說要全部大寫還是說要有小寫?
     al_draw_text(Titlefont, al_map_rgb(255,255,255), WIDTH/2-300, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, "The  Rat's  NIGHTMARE");
-    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-140 , ALLEGRO_ALIGN_CENTRE, "GUIDENCE");
-    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "START");
-    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "LEVEL");
-    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2+70 , ALLEGRO_ALIGN_CENTRE, "INFINITE MODE");
-    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2+140 , ALLEGRO_ALIGN_CENTRE, "EXIT");
+    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-140 , ALLEGRO_ALIGN_CENTRE, "1. GUIDENCE");
+    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "2. START");
+    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "3. LEVEL");
+    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2+70 , ALLEGRO_ALIGN_CENTRE, "4. INFINITE MODE");
+    al_draw_text(Menufont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2+140 , ALLEGRO_ALIGN_CENTRE, "5 EXIT");
 }
 
 void menu_destroy(){
@@ -73,6 +97,16 @@ void game_scene_init()
     }
     exit_img=al_load_bitmap("./image/exit.png");
 
+
+}
+void game_scene_init2(){ // GUIDANCE
+    // 字體 背景 圖片
+
+    GUIDANCEbackground = al_load_bitmap("./image/GUIDANCEbackground.jpg");// Load Background
+    GUIDANCEcontextfont = al_load_ttf_font("./font/Scrawny-Kids.ttf",40,0);
+    GUIDANCEtitlefont = al_load_ttf_font("./font/SF-Gushing-Meadow-SC.ttf",88,0);
+    Start = al_load_bitmap("./image/start.png");
+    BackMenu = al_load_bitmap("./image/back2.png");
 
 }
 void game_scene_draw1()
@@ -170,6 +204,18 @@ void game_scene_draw3()
 
     character_draw();
 }
+void game_scene_draw4(){
+    al_draw_bitmap(GUIDANCEbackground, 0, 0, 0);
+    al_draw_bitmap(Start, WIDTH/2-120, HEIGHT/2+200, 0);
+    al_draw_bitmap(BackMenu, WIDTH/2-800, HEIGHT/2+250, 0);
+
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-140 , ALLEGRO_ALIGN_CENTRE, "A rat is caught by a freak cat whose purpose isn'1t eating it for food, but forcing it");
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "to play bloody games. The cat wants the rat to die tragically so he can have lots of");
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-250, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "fun. HELP the rat from being hurt and get out of there !!!");
+
+    al_draw_text(GUIDANCEtitlefont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, "GUIDANCE");
+
+}
 void game_scene_destroy(){
     al_destroy_bitmap(background);
 
@@ -185,4 +231,11 @@ void game_scene_destroy(){
     }
     al_destroy_bitmap(exit_img);
     character_destroy();
+}
+void game_scene_destroy2(){
+    al_destroy_bitmap(GUIDANCEbackground);
+    al_destroy_font(GUIDANCEcontextfont);
+    al_destroy_font(GUIDANCEtitlefont);
+    al_destroy_bitmap(Start);
+    al_destroy_bitmap(BackMenu);
 }

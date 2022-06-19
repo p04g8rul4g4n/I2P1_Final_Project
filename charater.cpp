@@ -15,6 +15,7 @@ typedef struct character
     int blood; // HP 血量
     int time; // 時間
     int point; // 得分
+    int on_stage;
     int jump_speed,jump_time,init_y;
     int tool[2]={0};
 
@@ -63,7 +64,7 @@ void character_init(){
     chara.point = 0;
     chara.jump_speed=20;
     chara.jump_time = 0;
-
+    chara.on_stage=0;
 }
 
 void charater_process(ALLEGRO_EVENT event){
@@ -98,7 +99,7 @@ int check_collision(Character* ch){
             for(int k=0;k<wall_count;++k){
                res=in_range(ch->x+dx*j,ch->y+dy*i,&wall[k]);
                 if(res){
-                    return res;
+                    return k+1;
                 }
             }
         }
@@ -151,6 +152,7 @@ void charater_update(){
                 chara.y+=dy;
                 chara.state=STOP;
                 chara.jump_time=0;
+                chara.on_stage=tmp-1;
             }
             dx=(chara.dir?1:-1)*step;
             chara.x+=dx;
