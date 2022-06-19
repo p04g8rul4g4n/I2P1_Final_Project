@@ -136,7 +136,7 @@ void game_scene_init()
         // 載入圖片
     }
     exit_img=al_load_bitmap("./image/exit.png");
-
+    GUIDANCEcontextfont = al_load_ttf_font("./font/Scrawny-Kids.ttf",40,0);
 
 }
 void game_scene_init2(){ // GUIDANCE
@@ -165,7 +165,6 @@ void game_scene_draw1()
     }
     fclose(input); //Load coor of walls
 
-
     al_draw_bitmap(background, 0, 0, 0);
     for(int i=0;i<wall_count;i++)
         al_draw_bitmap(wall[i].img, wall[i].x, wall[i].y, 0);
@@ -186,6 +185,7 @@ void game_scene_draw1()
             }
         }
     }
+    character_attr_draw(1,GUIDANCEcontextfont);
     character_draw();
 }
 void game_scene_draw2()
@@ -225,7 +225,7 @@ void game_scene_draw2()
             }
         }
     }
-
+    character_attr_draw(2,GUIDANCEcontextfont);
     character_draw();
 }
 void game_scene_draw3()
@@ -264,6 +264,7 @@ void game_scene_draw3()
             }
         }
     }
+    character_attr_draw(3,GUIDANCEcontextfont);
     character_draw();
 }
 void game_scene_draw4(){

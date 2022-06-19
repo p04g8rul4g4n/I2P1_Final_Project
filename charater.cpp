@@ -202,6 +202,9 @@ void charater_update(){
                 chara.state=STOP;
                 chara.jump_time=0;
                 chara.on_stage=tmp-1;
+                if(chara.on_stage==wall_count){
+
+                }
                 res=check_trap(chara.on_stage);
                 if(res!=-1){
                     trigger(res+1);
@@ -264,33 +267,58 @@ void character_draw(){
             al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
     }else if(chara.state == MOVE ){
         if(chara.dir ){
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_move[0], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
-            }else{
+            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
                 al_draw_bitmap(chara.img_move[1], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }else if(chara.anime>chara.anime_time*2/3){
+                al_draw_bitmap(chara.img_move[2], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);            
             }
         }else{
-            if( chara.anime < chara.anime_time/2 ){
+            if( chara.anime < chara.anime_time/3 ){
                 al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
-            }else{
+            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
                 al_draw_bitmap(chara.img_move[1], chara.x, chara.y, 0);
+            }else if(chara.anime>chara.anime_time*2/3){
+                al_draw_bitmap(chara.img_move[2], chara.x, chara.y, 0);
             }
         }
     }else if( chara.state == JUMP ){
         if( chara.dir ){
-            if( chara.anime < chara.anime_time/2 ){
-                al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
-            }else{
-                al_draw_bitmap(chara.img_move[1], chara.x, chara.y, 0);
+            if( chara.anime < chara.anime_time/3 ){
+                al_draw_bitmap(chara.img_move[3], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
+                al_draw_bitmap(chara.img_move[4], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
+            }else if(chara.anime>chara.anime_time*2/3){
+                al_draw_bitmap(chara.img_move[5], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);            
             }
         }else{
-            if( chara.anime < chara.anime_time/2 ){
-                al_draw_bitmap(chara.img_move[0], chara.x, chara.y, 0);
-            }else{
-                al_draw_bitmap(chara.img_move[1], chara.x, chara.y, 0);
-            }
+            if( chara.anime < chara.anime_time/3 ){
+                al_draw_bitmap(chara.img_move[3], chara.x, chara.y, 0);
+            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
+                al_draw_bitmap(chara.img_move[4], chara.x, chara.y, 0);
+            }else if(chara.anime>chara.anime_time*2/3)
+                al_draw_bitmap(chara.img_move[5], chara.x, chara.y, 0);
         }
     }
+}
+void character_attr_draw(int level,ALLEGRO_FONT *GUIDANCEcontextfont){
+    char level_s[10];
+    sprintf(level_s,"Level %d",level);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-500 , ALLEGRO_ALIGN_CENTRE, level_s);
+    char chance[2];
+    sprintf(chance, "%d", chara.chance);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-450 , ALLEGRO_ALIGN_CENTRE, "Life : ");
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-450 , ALLEGRO_ALIGN_CENTRE, chance);
+    char blood[3];
+    sprintf(blood, "%d", chara.blood);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, "HP : ");
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, blood);
+    char time[3];
+    sprintf(time, "%d", chara.time);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, "Time : ");
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, time);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-300 , ALLEGRO_ALIGN_CENTRE, "Weapon: ");
 }
 void character_destroy(){
     for(int i = 0; i < 6; i++)
