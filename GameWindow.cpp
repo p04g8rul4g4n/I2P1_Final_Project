@@ -3,7 +3,7 @@
 bool draw = false;
 int window = 1;
 
-const char *title = "Final Project 10xxxxxxx";
+const char *title = "RAT'S NIGHTMARE";
 
 // ALLEGRO Variables
 ALLEGRO_DISPLAY* display = NULL;
@@ -53,8 +53,8 @@ void game_init() {
     fps=al_create_timer( 1.0 / FPS );
     al_register_event_source(event_queue, al_get_timer_event_source( fps )) ;
     // initialize the icon on the display
-    ALLEGRO_BITMAP *icon = al_load_bitmap("./image/icon.jpg");
-    al_set_display_icon(display, icon);
+    ALLEGRO_BITMAP *cat = al_load_bitmap("./image/cat.jpg");
+    al_set_display_icon(display, cat);
 }
 
 void game_begin() {
@@ -91,23 +91,23 @@ void game_update(){
             game_scene_init2(); // 這要改成要進入的畫面的設定
             judge_next_window = false;
             window = 2; // => 這個會game_draw()
-        }if( next_window == 2 ){ // START
+        }else if( next_window == 2 ){ // START
             game_scene_init(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
             window = 3;
-        }if( next_window == 3){ // LEVEL
+        }else if( next_window == 3){ // LEVEL
             game_scene_init(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
             window = 4;
-        }if( next_window == 4){ // INFINITE MODE
+        }else if( next_window == 4){ // INFINITE MODE
             game_scene_init(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
             window = 5;
-        }if( next_window == 5){ // SETTING
+        }else if( next_window == 5){ // SETTING
             game_scene_init2(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
             window = 6;
-        }if( next_window == 6){ // EXIT
+        }else if( next_window == 6){ // EXIT
         // 這裡感覺可以想辦法直接return GAME_TERMINATE
             game_scene_init2(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
@@ -154,7 +154,7 @@ int process_event(){
     }
 
     // Shutdown our program
-    if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
+    if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE||next_window==-1)
         return GAME_TERMINATE;
     else if(event.type == ALLEGRO_EVENT_TIMER)
         if(event.timer.source == fps)

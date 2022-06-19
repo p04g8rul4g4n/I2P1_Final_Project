@@ -85,6 +85,8 @@ void menu_process(ALLEGRO_EVENT event){
         }else if( event.keyboard.keycode == ALLEGRO_KEY_6){
             judge_next_window = true;
              next_window = 6;
+        }else if(event.keyboard.keycode == ALLEGRO_KEY_7){
+            next_window=-1;
         }
     }
 }
@@ -112,8 +114,7 @@ void menu_destroy(){
 
 // function of game_scene
 void game_scene_init()
-{   
-    printf("JIZZ\n");
+{
     wall_count=0;
     character_init();
     background = al_load_bitmap("./image/background.jpg");
@@ -289,7 +290,7 @@ void game_scene_draw4(){
 
 void game_scene_draw5(){
     al_draw_bitmap(OVERbackground, 0, 0, 0);
-    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "You Lose !!!!");    
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "You Lose !!!!");
     al_draw_text(GUIDANCEtitlefont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "Game Over");
 }
 

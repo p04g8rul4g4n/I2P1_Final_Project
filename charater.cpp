@@ -204,12 +204,14 @@ void charater_update(){
                 chara.on_stage=tmp-1;
                 if(chara.on_stage==wall_count-1){
                     //change level
-                    printf("jizz\n");
                     if(next_window==2||next_window==3){
                         next_window++;
                         judge_next_window=true;
                     }
-                    //exit
+                    else if(next_window==4){
+                        next_window=6;
+                        judge_next_window=true;
+                    }
                 }
                 res=check_trap(chara.on_stage);
                 if(res!=-1){
@@ -264,12 +266,14 @@ void charater_update(){
         chara.tool[1]=0;
     }
     if(chara.chance==0){
-        //exit
+        next_window=5;
+        judge_next_window=true;
     }
     else if(chara.blood<=0){
         chara.chance--;
     }else if(chara.time<=0){
-        //exit;
+        next_window=5;
+        judge_next_window=true;
     }
 }
 void character_draw(){
@@ -325,8 +329,8 @@ void character_attr_draw(int level,ALLEGRO_FONT *GUIDANCEcontextfont){
     sprintf(blood, "%d", chara.blood);
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, "HP : ");
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, blood);
-    char time[3];
-    sprintf(time, "%d", chara.time);
+    char time[10];
+    sprintf(time, "%.1lf", chara.time/FPS);
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, "Time : ");
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, time);
     char attr[20];
