@@ -81,6 +81,7 @@ void game_update(){
         }
         else if(window==2&&next_window!=0){
             menu_destroy();
+            game_scene_destroy2();
         }
         if(next_window==0){
             judge_next_window = false;
@@ -103,14 +104,14 @@ void game_update(){
             judge_next_window = false;
             window = 5;
         }if( next_window == 5){ // SETTING
-            game_scene_init(); // 這要要改成要進入的畫面的設定
+            game_scene_init2(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
-            window = 5;
+            window = 6;
         }if( next_window == 6){ // EXIT
         // 這裡感覺可以想辦法直接return GAME_TERMINATE
-            game_scene_init(); // 這要要改成要進入的畫面的設定
+            game_scene_init2(); // 這要要改成要進入的畫面的設定
             judge_next_window = false;
-            window = 5;
+            window = 7;
         }
 
     }
@@ -172,6 +173,10 @@ void game_draw(){
         game_scene_draw2();
     }else if(window==5){
         game_scene_draw3();
+    }else if(window==6){
+        game_scene_draw5();
+    }else if(window==7){
+        game_scene_draw6();
     }
     al_flip_display();
 }

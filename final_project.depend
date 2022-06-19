@@ -316,7 +316,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1655651035 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
+1655653490 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
 	"GameWindow.h"
 
 1655639248 c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.h
@@ -324,7 +324,7 @@
 	"charater.h"
 	"scene.h"
 
-1655639250 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
+1655653562 c:\users\user\desktop\study\計程一\i2p1_final_project\scene.h
 	"global.h"
 	"charater.h"
 
@@ -334,6 +334,6 @@
 1655639250 source:c:\users\user\desktop\study\計程一\i2p1_final_project\main.cpp
 	"GameWindow.h"
 
-1655650625 source:c:\users\user\desktop\study\計程一\i2p1_final_project\scene.cpp
+1655653699 source:c:\users\user\desktop\study\計程一\i2p1_final_project\scene.cpp
 	"scene.h"
 

@@ -299,20 +299,17 @@ void character_draw(){
         }
     }else if( chara.state == JUMP ){
         if( chara.dir ){
-            if( chara.anime < chara.anime_time/3 ){
-                al_draw_bitmap(chara.img_move[3], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
-            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
-                al_draw_bitmap(chara.img_move[4], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);
-            }else if(chara.anime>chara.anime_time*2/3){
-                al_draw_bitmap(chara.img_move[5], chara.x, chara.y, ALLEGRO_FLIP_HORIZONTAL);            
+            if( chara.anime < chara.anime_time/2 ){
+                al_draw_bitmap(chara.img_move[3], chara.x, chara.y, 0);
+            }else{
+                al_draw_bitmap(chara.img_move[4], chara.x, chara.y, 0);
             }
         }else{
-            if( chara.anime < chara.anime_time/3 ){
+            if( chara.anime < chara.anime_time/2 ){
                 al_draw_bitmap(chara.img_move[3], chara.x, chara.y, 0);
-            }else if(chara.anime<chara.anime_time*2/3&&chara.anime>chara.anime_time/3){
+            }else{
                 al_draw_bitmap(chara.img_move[4], chara.x, chara.y, 0);
-            }else if(chara.anime>chara.anime_time*2/3)
-                al_draw_bitmap(chara.img_move[5], chara.x, chara.y, 0);
+            }
         }
     }
 }

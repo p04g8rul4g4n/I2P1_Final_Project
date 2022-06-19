@@ -10,6 +10,9 @@ ALLEGRO_BITMAP *GUIDANCEbackground = NULL;
 ALLEGRO_FONT *GUIDANCEtitlefont = NULL;
 ALLEGRO_BITMAP *Start = NULL;
 ALLEGRO_BITMAP *BackMenu = NULL;
+ALLEGRO_BITMAP *OVERbackground = NULL;
+ALLEGRO_BITMAP *VICbackground = NULL;
+ALLEGRO_BITMAP *VICrat = NULL;
 
 typedef struct
 {
@@ -140,15 +143,16 @@ void game_scene_init()
     GUIDANCEcontextfont = al_load_ttf_font("./font/Scrawny-Kids.ttf",40,0);
 
 }
-void game_scene_init2(){ // GUIDANCE
-    // 字體 背景 圖片
-
+void game_scene_init2(){ // 1. GUIDANCE 2. GameOver 3, Victory
     GUIDANCEbackground = al_load_bitmap("./image/GUIDANCEbackground.jpg");// Load Background
     GUIDANCEcontextfont = al_load_ttf_font("./font/Scrawny-Kids.ttf",40,0);
     GUIDANCEtitlefont = al_load_ttf_font("./font/SF-Gushing-Meadow-SC.ttf",88,0);
     Start = al_load_bitmap("./image/start.png");
     BackMenu = al_load_bitmap("./image/back2.png");
 
+    OVERbackground = al_load_bitmap("./image/OVERbackground.jpg");
+    VICbackground = al_load_bitmap("./image/VICbackground.jpg");
+    VICrat = al_load_bitmap("./image/chara7_6.png");
 }
 void game_scene_draw1()
 {
@@ -280,6 +284,19 @@ void game_scene_draw4(){
     al_draw_text(GUIDANCEtitlefont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-400 , ALLEGRO_ALIGN_CENTRE, "GUIDANCE");
 
 }
+
+
+
+void game_scene_draw5(){
+    al_draw_bitmap(OVERbackground, 0, 0, 0);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2-70 , ALLEGRO_ALIGN_CENTRE, "You Lose !!!!");    
+    al_draw_text(GUIDANCEtitlefont, al_map_rgb(255,255,255), WIDTH/2, HEIGHT/2 , ALLEGRO_ALIGN_CENTRE, "Game Over");
+}
+
+void game_scene_draw6(){
+    al_draw_bitmap(VICbackground, 0, 0, 0);
+    al_draw_bitmap(VICrat, WIDTH/2+500, HEIGHT/2+100, 0);
+}
 void game_scene_destroy(){
     al_destroy_bitmap(background);
 
@@ -302,6 +319,9 @@ void game_scene_destroy2(){
     al_destroy_font(GUIDANCEtitlefont);
     al_destroy_bitmap(Start);
     al_destroy_bitmap(BackMenu);
+    al_destroy_bitmap(OVERbackground);
+    al_destroy_bitmap(VICbackground);
+    al_destroy_bitmap(VICrat);
 }
 void init_next_level(){
     game_scene_destroy();

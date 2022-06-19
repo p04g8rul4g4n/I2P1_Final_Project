@@ -12,5 +12,7 @@ void game_scene_draw1();
 void game_scene_draw2();
 void game_scene_draw3();
 void game_scene_draw4();
+void game_scene_draw5();
+void game_scene_draw6();
 void game_scene_destroy();
 void game_scene_destroy2();
