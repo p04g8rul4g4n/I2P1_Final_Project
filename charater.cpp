@@ -49,8 +49,8 @@ void character_init(){
     // initial the geometric information of character
     chara.width = al_get_bitmap_width(chara.img_move[0]);
     chara.height = al_get_bitmap_height(chara.img_move[0]);
-    chara.x = WIDTH/2-900;
-    chara.y = HEIGHT/2+200;
+    chara.x = 0;
+    chara.y = HEIGHT-wall[0].height-chara.height;
     chara.dir = false;
 
     // initial the animation component
@@ -125,7 +125,6 @@ void use(int tool_num){
     }
 }
 void trigger(int trap_num){
-    printf("%d\n",trap_num);
     if(trap_num==1){ //monster
         chara.blood-=5;
     }
@@ -138,7 +137,6 @@ void trigger(int trap_num){
 }
 void pick(int tool_num){
     int flag=1;
-    printf("%d %d %d\n",tool_num,chara.tool[0],chara.tool[1]);
     for(int i=0;i<2;++i){
         if(chara.tool[i]==0){
             chara.tool[i]=tool_num;
@@ -207,20 +205,18 @@ void charater_update(){
                 res=check_trap(chara.on_stage);
                 if(res!=-1){
                     trigger(res+1);
-                    //delete trap
                 }
                 res=check_tool(chara.on_stage);
                 if(res!=-1){
                     pick(res+1);
-                    //delete tool
                 }
-                printf("stage: %d\n",chara.on_stage);
             }
             dx=(chara.dir?1:-1)*step;
             chara.x+=dx;
             tmp=check_collision(&chara);
             if(tmp||chara.x<0||chara.x+chara.width>WIDTH){
                 chara.x-=dx;
+                step=0;
             }
         }
     }
@@ -228,28 +224,16 @@ void charater_update(){
         chara.dir = false;
         chara.x -= 5;
         chara.state = MOVE;
-        if(check_collision(&chara)){
-            chara.x += 5;
-        }
     }else if( key_state[ALLEGRO_KEY_D] ){
         chara.dir = true;
         chara.x += 5;
         chara.state = MOVE;
-        if(check_collision(&chara)){
-            chara.x -= 5;
-        }
     }else if( key_state[ALLEGRO_KEY_S] ){
         chara.y += 5;
         chara.state = MOVE;
-        if(check_collision(&chara)){
-            chara.y -= 5;
-        }
     }else if( key_state[ALLEGRO_KEY_W] ){
         chara.y -= 5;
         chara.state = MOVE;
-        if(check_collision(&chara)){
-            chara.y += 5;
-        }
     }else if(key_state[ALLEGRO_KEY_SPACE]){
         cnt=0;
         chara.init_y=chara.y;
