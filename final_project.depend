@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1655650563 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
+1655651560 source:c:\users\user\desktop\study\計程一\i2p1_final_project\charater.cpp
 	"charater.h"
 
 1655650385 c:\users\user\desktop\study\計程一\i2p1_final_project\charater.h
@@ -316,7 +316,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1655650733 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
+1655651035 source:c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.cpp
 	"GameWindow.h"
 
 1655639248 c:\users\user\desktop\study\計程一\i2p1_final_project\gamewindow.h

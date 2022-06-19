@@ -254,12 +254,12 @@ void charater_update(){
         chara.state = STOP;
     }
     if(key_state[ALLEGRO_KEY_R]){
-        chara.state=USE;
+        //chara.state=USE;
         use(chara.tool[0]);
         chara.tool[0]=0;
     }
     else if(key_state[ALLEGRO_KEY_T]){
-        chara.state=USE;
+        //chara.state=USE;
         use(chara.tool[1]);
         chara.tool[1]=0;
     }
@@ -332,7 +332,9 @@ void character_attr_draw(int level,ALLEGRO_FONT *GUIDANCEcontextfont){
     sprintf(time, "%d", chara.time);
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, "Time : ");
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-720, HEIGHT/2-350 , ALLEGRO_ALIGN_CENTRE, time);
-    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-300 , ALLEGRO_ALIGN_CENTRE, "Weapon: ");
+    char attr[20];
+    sprintf(attr,"tools: %d %d",chara.tool[0],chara.tool[1]);
+    al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-300 , ALLEGRO_ALIGN_CENTRE, attr);
 }
 void character_destroy(){
     for(int i = 0; i < 6; i++)

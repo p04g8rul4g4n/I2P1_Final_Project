@@ -76,10 +76,16 @@ void game_begin() {
 }
 void game_update(){
     if( judge_next_window ){
-        if(window==1){
+        if(window==1&&next_window!=1){
             menu_destroy();
         }
-        if( next_window == 1 ){ // GUIDANCE
+        else if(window==2&&next_window!=0){
+            menu_destroy();
+        }
+        if(next_window==0){
+            judge_next_window = false;
+            window = 1;
+        }else if( next_window == 1 ){ // GUIDANCE
             // initialize next scene
             game_scene_init2(); // 這要改成要進入的畫面的設定
             judge_next_window = false;
@@ -112,6 +118,23 @@ void game_update(){
         charater_update();
     }
 }
+void gui_process(ALLEGRO_EVENT event)
+{
+    if( event.type == ALLEGRO_EVENT_KEY_DOWN )
+    {
+        if( event.keyboard.keycode == ALLEGRO_KEY_1)
+        {
+            judge_next_window = true ;
+            next_window = 0;
+        }
+        else if( event.keyboard.keycode == ALLEGRO_KEY_ENTER)
+        {
+            judge_next_window = true;
+             next_window = 2;
+        }
+    }
+}
+
 
 int process_event(){
     // Request the event
@@ -120,7 +143,12 @@ int process_event(){
     // process the event of other component
     if( window == 1 ){
         menu_process(event);
-    }else if( window == 3||window==4||window==5 ){
+    }
+    else if(window==2)
+    {
+        gui_process(event);
+    }
+    else if( window == 3||window==4||window==5 ){
         charater_process(event);
     }
 
