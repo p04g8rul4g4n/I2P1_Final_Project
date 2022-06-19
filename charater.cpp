@@ -202,8 +202,14 @@ void charater_update(){
                 chara.state=STOP;
                 chara.jump_time=0;
                 chara.on_stage=tmp-1;
-                if(chara.on_stage==wall_count){
-
+                if(chara.on_stage==wall_count-1){
+                    //change level
+                    printf("jizz\n");
+                    if(next_window==2||next_window==3){
+                        next_window++;
+                        judge_next_window=true;
+                    }
+                    //exit
                 }
                 res=check_trap(chara.on_stage);
                 if(res!=-1){
@@ -256,6 +262,14 @@ void charater_update(){
         chara.state=USE;
         use(chara.tool[1]);
         chara.tool[1]=0;
+    }
+    if(chara.chance==0){
+        //exit
+    }
+    else if(chara.blood<=0){
+        chara.chance--;
+    }else if(chara.time<=0){
+        //exit;
     }
 }
 void character_draw(){

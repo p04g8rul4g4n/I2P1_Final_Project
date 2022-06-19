@@ -109,14 +109,15 @@ void menu_destroy(){
 
 // function of game_scene
 void game_scene_init()
-{
+{   
+    printf("JIZZ\n");
     wall_count=0;
     character_init();
     background = al_load_bitmap("./image/background.jpg");
     //Load Background
 
 
-    for(int i=0;i<20;i++)
+    for(int i=0;i<MAX_WALL;i++)
     {
         wall[i].img=al_load_bitmap("./image/wall3.jpg");
         wall[i].width=al_get_bitmap_width(wall[i].img);
@@ -301,4 +302,7 @@ void game_scene_destroy2(){
     al_destroy_font(GUIDANCEtitlefont);
     al_destroy_bitmap(Start);
     al_destroy_bitmap(BackMenu);
+}
+void init_next_level(){
+    game_scene_destroy();
 }

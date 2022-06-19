@@ -22,7 +22,6 @@ typedef struct wall
 extern const float FPS;
 extern const int WIDTH;
 extern const int HEIGHT;
-extern const int BOUND;
 extern const int MAX_WALL;
 extern bool key_state[ALLEGRO_KEY_MAX];
 extern bool judge_next_window;

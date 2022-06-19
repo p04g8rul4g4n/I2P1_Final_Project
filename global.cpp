@@ -4,7 +4,6 @@
 const float FPS = 60.0;
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
-const int BOUND = 150;
 const int MAX_WALL=30;
 w wall[MAX_WALL];
 int wall_count,next_window=0;

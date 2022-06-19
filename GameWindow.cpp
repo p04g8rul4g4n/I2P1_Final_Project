@@ -76,38 +76,37 @@ void game_begin() {
 }
 void game_update(){
     if( judge_next_window ){
-        if( window == 1 ){
-            // not back menu anymore, therefore destroy it
+        if(window==1){
             menu_destroy();
-            if( next_window == 1 ){ // GUIDANCE
-                // initialize next scene
-                game_scene_init2(); // 這要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 2; // => 這個會game_draw()
-            }if( next_window == 2 ){ // START
-                game_scene_init(); // 這要要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 3;
-            }if( next_window == 3){ // LEVEL
-                game_scene_init(); // 這要要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 4;
-            }if( next_window == 4){ // INFINITE MODE
-                game_scene_init(); // 這要要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 5;
-            }if( next_window == 5){ // SETTING
-                game_scene_init(); // 這要要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 5;
-            }if( next_window == 6){ // EXIT
-        // 這裡感覺可以想辦法直接return GAME_TERMINATE
-                game_scene_init(); // 這要要改成要進入的畫面的設定
-                judge_next_window = false;
-                window = 5;
-            }
-
         }
+        if( next_window == 1 ){ // GUIDANCE
+            // initialize next scene
+            game_scene_init2(); // 這要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 2; // => 這個會game_draw()
+        }if( next_window == 2 ){ // START
+            game_scene_init(); // 這要要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 3;
+        }if( next_window == 3){ // LEVEL
+            game_scene_init(); // 這要要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 4;
+        }if( next_window == 4){ // INFINITE MODE
+            game_scene_init(); // 這要要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 5;
+        }if( next_window == 5){ // SETTING
+            game_scene_init(); // 這要要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 5;
+        }if( next_window == 6){ // EXIT
+        // 這裡感覺可以想辦法直接return GAME_TERMINATE
+            game_scene_init(); // 這要要改成要進入的畫面的設定
+            judge_next_window = false;
+            window = 5;
+        }
+
     }
     if(window==3||window==4||window==5){
         charater_update();
