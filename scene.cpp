@@ -13,6 +13,9 @@ ALLEGRO_BITMAP *BackMenu = NULL;
 ALLEGRO_BITMAP *OVERbackground = NULL;
 ALLEGRO_BITMAP *VICbackground = NULL;
 ALLEGRO_BITMAP *VICrat = NULL;
+ALLEGRO_SAMPLE *song1=NULL;
+ALLEGRO_SAMPLE_INSTANCE *sample_instance1;
+ALLEGRO_BITMAP *TOOLbackground = NULL;
 
 typedef struct
 {
@@ -106,6 +109,7 @@ void game_scene_init()
 {
     wall_count=0;
     move_cnt=1;
+    if(sample_instance1!=NULL)al_stop_sample_instance(sample_instance1);
     FILE *input;
     if(next_window==2){
         input = fopen("./level.txt", "r+");
@@ -169,6 +173,16 @@ void game_scene_init()
     exit_img=al_load_bitmap("./image/exit.png");
     GUIDANCEcontextfont = al_load_ttf_font("./font/Scrawny-Kids.ttf",40,0);
 
+    song1 = al_load_sample("./sound/bmusic.wav");
+    al_reserve_samples(20);
+    sample_instance1 = al_create_sample_instance(song1);
+    // Loop the song until the display closes
+    al_set_sample_instance_playmode(sample_instance1, ALLEGRO_PLAYMODE_LOOP);
+    al_restore_default_mixer();
+    al_attach_sample_instance_to_mixer(sample_instance1, al_get_default_mixer());
+    // set the volume of instance
+    al_set_sample_instance_gain(sample_instance1, 1) ;
+    al_play_sample_instance(sample_instance1);
 }
 void game_scene_init2(){ // 1. GUIDANCE 2. GameOver 3, Victory
     GUIDANCEbackground = al_load_bitmap("./image/GUIDANCEbackground.jpg");// Load Background
@@ -285,6 +299,7 @@ void game_scene_draw6(){
     al_draw_bitmap(VICbackground, 0, 0, 0);
     al_draw_bitmap(VICrat, WIDTH/2+500, HEIGHT/2+100, 0);
 }
+
 void game_scene_destroy(){
     al_destroy_bitmap(background);
 
@@ -304,6 +319,7 @@ void game_scene_destroy(){
     }
     al_destroy_bitmap(exit_img);
     character_destroy();
+    al_stop_sample_instance(sample_instance1);
 }
 void game_scene_destroy2(){
     al_destroy_bitmap(GUIDANCEbackground);

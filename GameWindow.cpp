@@ -59,7 +59,7 @@ void game_init() {
 
 void game_begin() {
     // Load sound
-    song = al_load_sample("./sound/hello.wav");
+    song = al_load_sample("./sound/BACKGROUNDMUSIC.wav");
     al_reserve_samples(20);
     sample_instance = al_create_sample_instance(song);
     // Loop the song until the display closes
@@ -78,9 +78,11 @@ void game_update(){
     if( judge_next_window ){
         if(window==1&&next_window!=1){
             menu_destroy();
+            al_stop_sample_instance(sample_instance);
         }
         else if(window==2&&next_window!=0){
             menu_destroy();
+            al_stop_sample_instance(sample_instance);
             game_scene_destroy2();
         }
         if(next_window==0){
@@ -108,8 +110,7 @@ void game_update(){
             judge_next_window = false;
             window = 6;
         }else if( next_window == 6){ // EXIT
-        // 這裡感覺可以想辦法直接return GAME_TERMINATE
-            game_scene_init2(); // 這要要改成要進入的畫面的設定
+            game_scene_init2();
             judge_next_window = false;
             window = 7;
         }

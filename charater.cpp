@@ -22,6 +22,8 @@ typedef struct character
     ALLEGRO_BITMAP *img_move[7];
 
     ALLEGRO_SAMPLE_INSTANCE *move_Sound;
+    ALLEGRO_SAMPLE_INSTANCE *jump_Sound;
+
     int anime; // counting the time of animation
     int anime_time; // indicate how long the animation
 
@@ -40,12 +42,11 @@ void character_init(){
     }
 
     // load effective sound
-    sample = al_load_sample("./sound/atk_sound.wav");
-    chara.move_Sound  = al_create_sample_instance(sample);
+    sample = al_load_sample("./sound/JumpSound.wav");
+    chara.jump_Sound=al_create_sample_instance(sample);
 
-    al_set_sample_instance_playmode(chara.move_Sound, ALLEGRO_PLAYMODE_ONCE);
-    al_attach_sample_instance_to_mixer(chara.move_Sound, al_get_default_mixer());
-
+    al_set_sample_instance_playmode(chara.jump_Sound, ALLEGRO_PLAYMODE_ONCE);
+    al_attach_sample_instance_to_mixer(chara.jump_Sound, al_get_default_mixer());
     // initial the geometric information of character
     chara.width = al_get_bitmap_width(chara.img_move[0]);
     chara.height = al_get_bitmap_height(chara.img_move[0]);
@@ -57,7 +58,7 @@ void character_init(){
     // initial the animation component
     chara.state = STOP;
     chara.anime = 0;
-    chara.anime_time = 30;
+    chara.anime_time = 60;
 
     chara.chance = 1;
     chara.blood = 10;
@@ -320,18 +321,13 @@ void charater_update(){
             chara.state=JUMP;
             chara.jump_speed=0;
         }
-    }else if( key_state[ALLEGRO_KEY_S] ){
-        chara.y += 5;
-        chara.state = MOVE;
-    }else if( key_state[ALLEGRO_KEY_W] ){
-        chara.y -= 5;
-        chara.state = MOVE;
     }else if(key_state[ALLEGRO_KEY_SPACE]){
         cnt=0;
         chara.init_y=chara.y;
         chara.init_x=chara.x;
         chara.jump_speed=JUMP_SPEED;
         chara.state = JUMP;
+        al_play_sample_instance(chara.jump_Sound);
     }else if( chara.anime == chara.anime_time-1 ){
         chara.anime = 0;
         chara.state = STOP;
@@ -404,7 +400,7 @@ void character_draw(){
     }
 }
 void character_attr_draw(int level,ALLEGRO_FONT *GUIDANCEcontextfont){
-    int t_w,t_w2;
+    int t_w=0,t_w2=0;
     char level_s[10];
     sprintf(level_s,"Level %d",level);
     al_draw_text(GUIDANCEcontextfont, al_map_rgb(255,255,255), WIDTH/2-850, HEIGHT/2-500 , ALLEGRO_ALIGN_CENTRE, level_s);
